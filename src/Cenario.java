@@ -1,25 +1,28 @@
+import java.util.ArrayList;
+
 public class Cenario {
 	private String descricao;
 	private boolean ocorreu;
 	private int numeracao;
-	private boolean finalizado;
+	private StatusCenario finalizado;
+	private ArrayList Aposta = new ArrayList();
 	
-	public Cenario(String descricao) {
+	public Cenario(String descricao, int numeracao) {
 		this.descricao = descricao;
-		this.numeracao = 0; //CRIAR UM CONTADOR STATIC DA CLASSE
+		this.numeracao = numeracao; //CRIAR UM CONTADOR STATIC DA CLASSE
 		this.ocorreu = false;
-		this.finalizado = false;
+		this.finalizado = StatusCenario.NAO_FINALIZADO;
 	}
 	
 	public String toString() {
 		return (getNumeracao() + " - " + getDescricao() + " - " + getEstado());
 	}
 
-	private int getNumeracao() {
+	public int getNumeracao() {
 		return this.numeracao;
 	}
 
-	private String getEstado() {
+	/*private String getEstado() {
 		if (this.finalizado == true) {
 			if(this.ocorreu == true) {
 				return ("Finalizado (ocorreu)");
@@ -29,9 +32,13 @@ public class Cenario {
 		} else {
 			return ("Não finalizado");
 		}
-	}
+	}*/
 
-	private String getDescricao() {
+	public String getDescricao() {
 		return this.descricao;
+	}
+	
+	public String getFinalizado() {
+		return StatusCenario.retornoEnum();
 	}
 }
