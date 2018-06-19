@@ -1,9 +1,9 @@
 public class Aposta {
 	private String nomeApostador;
-	private float valorAposta;
+	private int valorAposta;
 	private String previsao;
 	
-	public Aposta(String nomeApostador, float valorAposta, String previsao) {
+	public Aposta(String nomeApostador, int valorAposta, String previsao) {
 		this.nomeApostador = nomeApostador;
 		this.valorAposta = valorAposta;
 		this.previsao = previsao;
@@ -14,15 +14,15 @@ public class Aposta {
 		return (getNomeApostador() + " - " + getValorAposta() + " - " + getPrevisao());
 	}
 
-	private String getPrevisao() {
+	public String getPrevisao() {
 		return this.previsao;
 	}
 
-	private float getValorAposta() {
+	public int getValorAposta() {
 		return this.valorAposta;
 	}
 
-	private String getNomeApostador() {
+	public String getNomeApostador() {
 		return this.nomeApostador;
 	}
 }
