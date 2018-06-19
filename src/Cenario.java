@@ -4,41 +4,38 @@ public class Cenario {
 	private String descricao;
 	private boolean ocorreu;
 	private int numeracao;
-	private StatusCenario finalizado;
+	private StatusCenario status;
 	private ArrayList Aposta = new ArrayList();
 	
 	public Cenario(String descricao, int numeracao) {
 		this.descricao = descricao;
-		this.numeracao = numeracao; //CRIAR UM CONTADOR STATIC DA CLASSE
+		this.numeracao = numeracao;
 		this.ocorreu = false;
-		this.finalizado = StatusCenario.NAO_FINALIZADO;
+		this.status = StatusCenario.NAO_FINALIZADO;
 	}
 	
 	public String toString() {
-		return (getNumeracao() + " - " + getDescricao() + " - " + getEstado());
+		return (getNumeracao() + " - " + getDescricao() + " - " + getFinalizado());
 	}
 
 	public int getNumeracao() {
 		return this.numeracao;
 	}
 
-	/*private String getEstado() {
-		if (this.finalizado == true) {
-			if(this.ocorreu == true) {
-				return ("Finalizado (ocorreu)");
-			} else {
-				return ("Finalizado (n ocorreu)");
-			}
-		} else {
-			return ("Não finalizado");
-		}
-	}*/
-
 	public String getDescricao() {
 		return this.descricao;
 	}
 	
 	public String getFinalizado() {
-		return StatusCenario.retornoEnum();
+		return status.getInfoStatus();
 	}
+	
+	public void setStatus() {
+		
+	}
+	
+	public String finalizaCenario() {
+		
+	}
+	
 }

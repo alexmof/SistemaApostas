@@ -1,12 +1,13 @@
 public enum StatusCenario {
 	NAO_FINALIZADO("Não finalizado"), FINALIZADO_OCORREU("Finalizado (ocorreu)"), FINALIZADO_N_OCORREU("Finalizado (n ocorreu)");
 	
-	public String mensagem;
+	private final String mensagem;
 	
 	StatusCenario(String mensagemex){
-		mensagem = mensagemex;
+		this.mensagem = mensagemex;
 	}
-	public String retornoEnum() {
+	
+	public String getInfoStatus() {
 		return mensagem;
 	}
 }
