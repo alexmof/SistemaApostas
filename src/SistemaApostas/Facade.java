@@ -1,8 +1,10 @@
+package SistemaApostas;
+
 import easyaccept.EasyAccept;
 
 public class Facade {
 	public static void main(String[] args) {
-		args = new String[] {"Facade", "acceptance_test/us2_test.txt"};
+		args = new String[] {"Facade", "acceptance_test/us3_test.txt"};
 		EasyAccept.main(args);
 	}
 	

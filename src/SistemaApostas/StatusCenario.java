@@ -1,3 +1,5 @@
+package SistemaApostas;
+
 public enum StatusCenario {
 	NAO_FINALIZADO("Nao finalizado"), FINALIZADO_OCORREU("Finalizado (ocorreu)"), FINALIZADO_N_OCORREU("Finalizado (n ocorreu)");
 	

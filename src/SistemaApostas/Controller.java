@@ -1,3 +1,5 @@
+package SistemaApostas;
+
 import java.util.ArrayList;
 
 public class Controller {
@@ -43,8 +45,20 @@ public class Controller {
 	}
 
 	public String exibirCenario(int cenario) {
+		validadorCenario(cenario);
 		return listaCenarios.get(cenario - 1).toString();
 	}
+
+	private void validadorCenario(int cenario) {
+		if (cenario < 0) {
+			throw new IllegalArgumentException("Erro na consulta de cenario: Cenario invalido");
+		}
+		if (cenario > listaCenarios.size()) {
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario nao cadastrado");
+		}
+	}
+	
+	
 
 	public String exibirCenarios() {
 		String lista = "";

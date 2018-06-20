@@ -1,3 +1,5 @@
+package SistemaApostas;
+
 import java.util.ArrayList;
 
 public class Cenario {
@@ -9,16 +11,25 @@ public class Cenario {
 	
 	public Cenario(String descricao, int numeracao) {
 		validadorDescricao(descricao);
+		validadorNumeracao(numeracao);
 		this.descricao = descricao;
 		this.numeracao = numeracao;
 		this.status = StatusCenario.NAO_FINALIZADO;
 	}
 	
+	private void validadorNumeracao(int numeracao) {
+		if (numeracao < 0) {
+			throw new RuntimeException("????");
+		}
+	}
+
 	private void validadorDescricao(String descricao) {
 		if (descricao.trim().isEmpty()) {
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
-		if (descricao.eq)
+		if (descricao.equals(null)) {
+			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser nula");
+		}
 	}
 
 	public String toString() {

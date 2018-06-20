@@ -1,3 +1,5 @@
+package SistemaApostas;
+
 public enum PrevisaoApostador {
 	VAI_ACONTECER("VAI ACONTECER"),N_VAI_ACONTECER("VAI ACONTECER");
 	

@@ -1,3 +1,5 @@
+package SistemaApostas;
+
 public class Aposta {
 	private String nomeApostador;
 	private int valorAposta;
@@ -11,9 +13,13 @@ public class Aposta {
 	
 	@Override
 	public String toString() {
-		return (getNomeApostador() + " - " + getValorAposta() + " - " + getPrevisao());
+		return (getNomeApostador() + " - " + getValorAposta() + " - " + getPrevisaoString());
 	}
 
+	public String getPrevisaoString() {
+		return this.previsao.getPrevisaoApostador();
+	}
+	
 	public PrevisaoApostador getPrevisao() {
 		return this.previsao;
 	}
