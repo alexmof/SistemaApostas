@@ -2,21 +2,27 @@ import java.util.ArrayList;
 
 public class Cenario {
 	private String descricao;
-	private boolean ocorreu;
 	private int numeracao;
 	private StatusCenario status;
 	private ArrayList<Aposta> listaApostas = new ArrayList<Aposta>();
 	private int valorTotal; 
 	
 	public Cenario(String descricao, int numeracao) {
+		validadorDescricao(descricao);
 		this.descricao = descricao;
 		this.numeracao = numeracao;
-		this.ocorreu = false;
 		this.status = StatusCenario.NAO_FINALIZADO;
 	}
 	
+	private void validadorDescricao(String descricao) {
+		if (descricao.trim().isEmpty()) {
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+		if (descricao.eq)
+	}
+
 	public String toString() {
-		return (getNumeracao() + " - " + getDescricao() + " - " + getFinalizado());
+		return (getNumeracao() + " - " + getDescricao() + " - " + getStatus());
 	}
 
 	public int getNumeracao() {
@@ -27,8 +33,12 @@ public class Cenario {
 		return this.descricao;
 	}
 	
-	public String getFinalizado() {
-		return status.getInfoStatus();
+	public StatusCenario getStatus() {
+		return status;
+	}
+	
+	public String getStatusString() {
+		return status.toString();
 	}
 	
 	public void setStatus(StatusCenario status) {
@@ -50,7 +60,7 @@ public class Cenario {
 		return valorTotal;
 	}
 
-	public void cadastraAposta(String apostador, int valor, String previsao) {
+	public void cadastraAposta(String apostador, int valor, PrevisaoApostador previsao) {
 		Aposta aposta = new Aposta(apostador, valor, previsao);
 		listaApostas.add(aposta);
 	}
@@ -66,5 +76,14 @@ public class Cenario {
 		}
 		return stringTodasApostas;
 	}
-	
+
+	public int valorApostasPerdedoras() {
+		int valorApostas = 0;
+		for(Aposta ap : listaApostas) {
+			if (getStatus().equals(StatusCenario.FINALIZADO_OCORREU) && ap.getPrevisao() == PrevisaoApostador.N_VAI_ACONTECER) {
+				valorApostas += ap.getValorAposta();
+			}
+		}
+		return valorApostas;
+	}
 }

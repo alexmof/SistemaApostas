@@ -9,8 +9,22 @@ public class Controller {
 	//INICIALIZACAO DO SISTEMA
 	
 	public void inicializaSistema(int caixa, double taxa) {
+		validadorCaixa(caixa);
+		validadorTaxa(taxa);		
 		this.caixa = caixa;
 		this.taxa = taxa;
+	}
+
+	private void validadorCaixa(int caixa) {
+		if (caixa < 0) {
+			throw new RuntimeException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
+		}
+	}
+
+	private void validadorTaxa(double taxa) {
+		if (taxa < 0) {
+			throw new RuntimeException("Erro na inicializacao: Taxa nao pode ser inferior a 0");
+		}
 	}
 
 	public int getCaixa() {
@@ -46,7 +60,7 @@ public class Controller {
 
 	//APOSTAS
 	
-	public void cadastraAposta(int cenario, String apostador, int valor, String previsao) {
+	public void cadastraAposta(int cenario, String apostador, int valor, PrevisaoApostador previsao) {
 		listaCenarios.get(cenario).cadastraAposta(apostador, valor, previsao);
 	}
 
@@ -69,7 +83,9 @@ public void fecharAposta(int cenario, boolean ocorreu) {
 	}
 	
 	public int getCaixaCenario(int cenario) {
-		return 0;
+		double caixaCenario = Math.floor(listaCenarios.get(cenario).valorApostasPerdedoras() * this.taxa);
+		int caixaCenario2 = (int) caixaCenario;
+		return caixaCenario2;
 	}
 	
 	public int getTotalRateioCenario(int cenario) {
