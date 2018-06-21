@@ -1,7 +1,7 @@
 package SistemaApostas;
 
 public enum PrevisaoApostador {
-	VAI_ACONTECER("VAI ACONTECER"),N_VAI_ACONTECER("VAI ACONTECER");
+	VAI_ACONTECER("VAI ACONTECER"),N_VAI_ACONTECER("N VAI ACONTECER");
 	
 	private String mensagem;
 	

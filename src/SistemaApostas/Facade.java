@@ -4,7 +4,7 @@ import easyaccept.EasyAccept;
 
 public class Facade {
 	public static void main(String[] args) {
-		args = new String[] {"Facade", "acceptance_test/us3_test.txt"};
+		args = new String[] {"SistemaApostas.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -34,9 +34,13 @@ public class Facade {
 		return controller.exibirCenarios();
 	}
 	
+	public int cadastrarCenario(String descricao, int bonus) {
+		return controller.cadastraCenario(descricao, bonus);
+	}
+	
 	//APOSTAS
 	
-	public void cadastraAposta(int cenario, String apostador, int valor, PrevisaoApostador previsao) {
+	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		controller.cadastraAposta(cenario, apostador, valor, previsao);
 	}
 	

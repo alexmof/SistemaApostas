@@ -32,8 +32,10 @@ public class Controller {
 	public int getCaixa() {
 		return this.caixa;
 	}
-
 	
+	public void setCaixa(int novoValor) {
+		this.caixa = novoValor;
+	}
 	
 	//CENARIOS
 	
@@ -58,8 +60,6 @@ public class Controller {
 		}
 	}
 	
-	
-
 	public String exibirCenarios() {
 		String lista = "";
 		if (listaCenarios.size() == 0) {
@@ -72,27 +72,64 @@ public class Controller {
 		return lista;
 	}
 
+	public int cadastraCenario(String descricao, int bonus) {
+		
+		setCaixa(getCaixa() - bonus);
+		return 0;
+	}
+	
 	//APOSTAS
 	
-	public void cadastraAposta(int cenario, String apostador, int valor, PrevisaoApostador previsao) {
-		listaCenarios.get(cenario).cadastraAposta(apostador, valor, previsao);
+	public void cadastraAposta(int cenario, String apostador, int valor, String previsao) {
+		validadorNumCenario(cenario);
+		validadorPrevisao(previsao);
+		if (previsao.equals("N VAI ACONTECER")) {
+			listaCenarios.get(cenario - 1).cadastraAposta(apostador, valor, PrevisaoApostador.N_VAI_ACONTECER);
+		} else {
+			listaCenarios.get(cenario - 1).cadastraAposta(apostador, valor, PrevisaoApostador.VAI_ACONTECER);
+		}
 	}
 
+
 	public int valorTotalDeApostas(int cenario) {
+		
 		return listaCenarios.get(cenario - 1).valorTotalDeApostas();
 	}
 
 	public int totalDeApostas(int cenario) {
-		return listaCenarios.get(cenario).totalDeApostas();
+		return listaCenarios.get(cenario - 1).totalDeApostas();
 	}
 
 	public String exibeApostas(int cenario) {
 		return listaCenarios.get(cenario).exibeApostas();
 	}
 	
+	  //Validadores aposta
+	
+	private void validadorNumCenario(int cenario) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		} 
+		if (cenario > listaCenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	private void validadorPrevisao(String previsao) {
+		if (previsao.equals(null)) {
+			throw new NullPointerException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+		if (previsao.trim().isEmpty()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+		if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
+		}
+	}
+	
 	//ENCERRAR APOSTAS
 	
-public void fecharAposta(int cenario, boolean ocorreu) {
+	public void fecharAposta(int cenario, boolean ocorreu) {
 		listaCenarios.get(cenario).finalizaCenario(ocorreu);
 	}
 	
@@ -105,4 +142,5 @@ public void fecharAposta(int cenario, boolean ocorreu) {
 	public int getTotalRateioCenario(int cenario) {
 		return 0;
 	}
+
 }
