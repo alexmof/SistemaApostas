@@ -10,7 +10,7 @@ public class Facade {
 	
 	Controller controller = new Controller();
 
-	//INICIALIZAÇÃO DO SISTEMA
+	//INICIALIZACAO DO SISTEMA
 	
 	public void inicializa(int caixa, double taxa) {
 		controller.inicializaSistema(caixa, taxa);

@@ -81,7 +81,8 @@ public class Controller {
 	//APOSTAS
 	
 	public void cadastraAposta(int cenario, String apostador, int valor, String previsao) {
-		validadorNumCenario(cenario);
+		String mensagemDeErro = "Erro no cadastro de aposta: ";
+		validadorNumCenario(cenario, mensagemDeErro);
 		validadorPrevisao(previsao);
 		if (previsao.equals("N VAI ACONTECER")) {
 			listaCenarios.get(cenario - 1).cadastraAposta(apostador, valor, PrevisaoApostador.N_VAI_ACONTECER);
@@ -92,7 +93,8 @@ public class Controller {
 
 
 	public int valorTotalDeApostas(int cenario) {
-		
+		String mensagemDeErro = "Erro na consulta do valor total de apostas: ";
+		validadorNumCenario(cenario, mensagemDeErro);
 		return listaCenarios.get(cenario - 1).valorTotalDeApostas();
 	}
 
@@ -106,12 +108,12 @@ public class Controller {
 	
 	  //Validadores aposta
 	
-	private void validadorNumCenario(int cenario) {
+	private void validadorNumCenario(int cenario, String mensagemDeErro) {
 		if (cenario <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+			throw new IllegalArgumentException(mensagemDeErro + "Cenario invalido");
 		} 
 		if (cenario > listaCenarios.size()) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+			throw new IllegalArgumentException(mensagemDeErro  + "Cenario nao cadastrado");
 		}
 	}
 	
