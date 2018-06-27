@@ -1,5 +1,8 @@
 package SistemaApostas;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Aposta {
 	private String nomeApostador;
 	private int valorAposta;

@@ -1,5 +1,7 @@
 package SistemaApostas;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Cenario {
@@ -37,9 +39,16 @@ public class Cenario {
 	}
 
 	public int getNumeracao() {
-		return this.numeracao;
+		return (this.numeracao - 1);
 	}
 
+	private String conversorCentReal(int qtdCentavos) {
+		DecimalFormat df = new DecimalFormat();
+		df.applyPattern("R$ #,##");                                ///////////////
+		df.setRoundingMode(RoundingMode.DOWN);
+		return df.format(qtdCentavos/100);
+	}
+	
 	public String getDescricao() {
 		return this.descricao;
 	}
